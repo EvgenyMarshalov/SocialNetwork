@@ -2,7 +2,7 @@ import reportWebVitals from './reportWebVitals';
 import store from './redux/redux-store';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter, BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
@@ -15,14 +15,12 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
+  
       <React.StrictMode>
         {/* <App state={state} dispatch={store.dispatch.bind(store)} store={store} /> */}
         <App />
       </React.StrictMode>
-    </Provider>
-  </BrowserRouter>,
+    ,
   document.getElementById('root')
 );
 

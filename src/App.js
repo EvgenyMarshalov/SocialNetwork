@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import { Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
@@ -36,30 +36,34 @@ class App extends Component {
         <HeaderContainer />
         <Navbar />
         <div className='app-wrapper-content'>
-          
-          <Route path='/profile/:userId?' render={() => {
-            return <React.Suspense fallback={<div>Loading...</div>}>
-              <ProfileContainer />
-            </React.Suspense>
-          }} />
 
-          <Route path='/dialogs' render={() => {
-            return <React.Suspense fallback={<div>Loading...</div>}>
-              <DialogsContainer />
-            </React.Suspense>
-          }} />
+              <Route path='/profile/:userId?' render={() => {
+                return <React.Suspense fallback={<div>Loading...</div>}>
+                  <ProfileContainer />
+                </React.Suspense>
+              }} />
 
-          <Route path='/users' render={() =>
-            <UsersContainer />} />
+              <Route path='/dialogs' render={() => {
+                return <React.Suspense fallback={<div>Loading...</div>}>
+                  <DialogsContainer />
+                </React.Suspense>
+              }} />
 
-          <Route path='/login' render={() =>
-            <LoginPage />} />
+              <Route path='/users' render={() =>
+                <UsersContainer />} />
+
+              <Route path='/login' render={() =>
+                <LoginPage />} />
+
+              {/* <Route exact path='/' render={() =>
+                <LoginPage />} /> */}
 
 
 
-          <Route path='/music' component={Music} />
-          <Route path='/news' component={News} />
-          <Route path='/settings' component={Settings} />
+              <Route path='/music' component={Music} />
+              <Route path='/news' component={News} />
+              <Route path='/settings' component={Settings} />
+
         </div>
       </div>
     );
@@ -73,13 +77,13 @@ const mapStateToProps = (state) => ({
 let AppContainer = connect(mapStateToProps, { initializeApp })(App);
 
 const SamuriJSApp = (props) => {
-  return <BrowserRouter>
+  return <HashRouter >
     <Provider store={store}>
       <React.StrictMode>
         <AppContainer />
       </React.StrictMode>
     </Provider>
-  </BrowserRouter>
+  </HashRouter>
 }
 
 export default SamuriJSApp;
